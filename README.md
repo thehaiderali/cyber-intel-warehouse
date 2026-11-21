@@ -24,6 +24,7 @@ project_reporting  views for the business questions
 | `sql/01_create_schemas.sql` | Creates `project_staging`, `project_dw`, `project_reporting` |
 | `sql/02_staging_ddl.sql` | ETL audit log, raw landing tables, reference tables, cleaned staging tables |
 | `sql/03_dw_ddl.sql` | 9 dimensions, 3 bridge tables, 3 fact tables |
+| `sql/tests/test_01_ddl.sql` | Automated structure and constraint tests |
 
 Run order (PostgreSQL 15+):
 
@@ -32,6 +33,14 @@ psql -U postgres -d postgres -f sql/00_create_database.sql
 psql -U postgres -d intel_dw -f sql/01_create_schemas.sql
 psql -U postgres -d intel_dw -f sql/02_staging_ddl.sql
 psql -U postgres -d intel_dw -f sql/03_dw_ddl.sql
+```
+
+## Tests
+
+`sql/tests/test_01_ddl.sql` checks the structure against the Phase 1 ERD (every table and column, primary and foreign keys) and checks that the constraints accept valid rows and reject invalid ones (business rules BR-01 to BR-07, fact grain, SCD Type 2, surrogate keys). It runs in a rolled-back transaction, restores identity sequences, and exits non-zero if any test fails.
+
+```
+psql -U postgres -d intel_dw -v ON_ERROR_STOP=1 -f sql/tests/test_01_ddl.sql
 ```
 
 ## Differences from the Phase 1 design
