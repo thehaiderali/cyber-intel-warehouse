@@ -10,6 +10,9 @@
            Also transient - rebuilt from raw_* every batch.
    ref_*   Persistent reference / mapping data maintained by the team
            (controlled vocabularies, software -> CPE product mapping).
+   cur_*   Persistent "latest known state" carried between batches, for
+           sources that only send changes (KEV adds, NVD modified CVEs).
+   dq_*    Results of the data quality checks.
 
    Sources
    NVD   CVE feed            JSON  (wrapper object, "vulnerabilities" array)
@@ -55,6 +58,19 @@ CREATE TABLE etl_step_log (
     message         TEXT
 );
 COMMENT ON TABLE etl_step_log IS 'Row counts per ETL step (input, output, rejected) - feeds the data cleaning report.';
+
+DROP TABLE IF EXISTS etl_cleaning_stat;
+CREATE TABLE etl_cleaning_stat (
+    batch_id        VARCHAR(40)  NOT NULL,
+    source_name     VARCHAR(20)  NOT NULL,                   -- NVD / EPSS / KEV / ASSET
+    column_name     VARCHAR(60)  NOT NULL,
+    cleaning_rule   VARCHAR(60)  NOT NULL,                   -- e.g. 'Trim + standardise case'
+    rows_affected   BIGINT       NOT NULL,
+    example_before  TEXT,
+    example_after   TEXT,
+    PRIMARY KEY (batch_id, source_name, column_name, cleaning_rule)
+);
+COMMENT ON TABLE etl_cleaning_stat IS 'How many values each cleaning rule changed per batch, with one before/after example.';
 
 -- 2. Raw landing tables (as-is copy of the source files)
 
@@ -274,3 +290,51 @@ CREATE TABLE stg_kev (
     batch_id                    VARCHAR(40)  NOT NULL,
     CHECK (due_date >= date_added)                                                     -- BR-05
 );
+
+
+-- 5. Persistent current state and data quality results
+
+DROP TABLE IF EXISTS cur_kev_catalog;
+DROP TABLE IF EXISTS cur_cve_score;
+DROP TABLE IF EXISTS dq_check_result;
+
+-- Incremental KEV files only contain the entries added that day, so the full
+-- catalog is accumulated here (full load + every daily addition).
+CREATE TABLE cur_kev_catalog (
+    cve_id                      VARCHAR(30)  PRIMARY KEY,
+    vendor_project              VARCHAR(255),
+    product                     VARCHAR(255),
+    vulnerability_name          TEXT,
+    date_added                  DATE         NOT NULL,
+    due_date                    DATE         NOT NULL,
+    required_action             TEXT,
+    known_ransomware_use        VARCHAR(20)  NOT NULL,
+    forensic_triage_required    BOOLEAN      NOT NULL,
+    first_batch_id              VARCHAR(40)  NOT NULL,
+    last_batch_id               VARCHAR(40)  NOT NULL
+);
+COMMENT ON TABLE cur_kev_catalog IS 'Accumulated CISA KEV catalog: one row per KEV-listed CVE, latest values.';
+
+-- Incremental NVD files only contain CVEs modified that day. The latest CVSS
+-- of every CVE is kept here so daily snapshots can include unchanged CVEs.
+CREATE TABLE cur_cve_score (
+    cve_id          VARCHAR(30)  PRIMARY KEY,
+    cvss_key        BIGINT       NOT NULL,
+    cvss_base_score NUMERIC(3,1),
+    last_batch_id   VARCHAR(40)  NOT NULL
+);
+COMMENT ON TABLE cur_cve_score IS 'Latest CVSS (as dim_cvss key) per CVE, carried forward between NVD batches.';
+
+CREATE TABLE dq_check_result (
+    dq_check_id     BIGINT       GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    batch_id        VARCHAR(40),                             -- NULL for warehouse-wide checks
+    check_category  VARCHAR(20)  NOT NULL CHECK (check_category IN ('Completeness', 'Accuracy', 'Integrity', 'Uniqueness', 'Validity')),
+    check_name      VARCHAR(200) NOT NULL,
+    target_table    VARCHAR(100),
+    expected_value  NUMERIC,
+    actual_value    NUMERIC,
+    status          VARCHAR(10)  NOT NULL CHECK (status IN ('PASS', 'FAIL', 'WARN')),
+    details         TEXT,
+    checked_at      TIMESTAMP    NOT NULL DEFAULT clock_timestamp()
+);
+COMMENT ON TABLE dq_check_result IS 'One row per executed data quality check (completeness, accuracy, integrity, ...).';

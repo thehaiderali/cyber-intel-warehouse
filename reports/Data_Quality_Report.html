@@ -1,0 +1,1106 @@
+<html><head><meta charset="utf-8"><title>Data Quality Report</title><style>body{font-family:Arial,sans-serif;margin:28px;font-size:12px} h1{font-size:22px} h2{font-size:15px;margin-top:22px} th{background:#e8eef5}</style></head><body>
+<h1>Data Quality Report</h1>
+<p>DL3004 Phase 2 - Cyber Intel Warehouse. Afras Shahnawaz (24L-2547), Rana Nauman Iqbal (24L-2565), Haider Ali (24L-2522).</p>
+<p>Checks are SQL scripts <code>sql/dq/70_dq_batch_checks.sql</code> (every batch) and <code>sql/dq/71_dq_warehouse_checks.sql</code> (whole warehouse). PASS = expected value equals actual value; WARN = known gap in the source data (not a load defect); FAIL = load defect.</p>
+<h2>1. Summary</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">check_category</th>
+    <th align="center">checks</th>
+    <th align="center">pass</th>
+    <th align="center">warn</th>
+    <th align="center">fail</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">Accuracy</td>
+    <td align="right">18</td>
+    <td align="right">18</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Completeness</td>
+    <td align="right">37</td>
+    <td align="right">33</td>
+    <td align="right">4</td>
+    <td align="right">0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Integrity</td>
+    <td align="right">30</td>
+    <td align="right">28</td>
+    <td align="right">2</td>
+    <td align="right">0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="right">12</td>
+    <td align="right">12</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="right">9</td>
+    <td align="right">9</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+  </tr>
+</table>
+
+<h2>2. Warehouse contents</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">table_name</th>
+    <th align="center">rows</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_cve (all versions)</td>
+    <td align="right">2884</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_asset</td>
+    <td align="right">141</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_product</td>
+    <td align="right">3718</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_software</td>
+    <td align="right">20</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_cvss</td>
+    <td align="right">564</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_cwe</td>
+    <td align="right">289</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_kev_status</td>
+    <td align="right">55</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_date</td>
+    <td align="right">18626</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_product</td>
+    <td align="right">16087</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_cwe</td>
+    <td align="right">3389</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_product_software_map</td>
+    <td align="right">9</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">149</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">423</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">854</td>
+  </tr>
+</table>
+
+<h2>3. Integrity - fact / bridge rows without a matching dimension row (must be 0)</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">target_table</th>
+    <th align="center">check_name</th>
+    <th align="center">expected</th>
+    <th align="center">actual</th>
+    <th align="center">status</th>
+    <th align="center">details</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows pointing at the Unknown member (kev_date_added_key = -1)</td>
+    <td align="right">0</td>
+    <td align="right">122</td>
+    <td align="left">WARN</td>
+    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows pointing at the Unknown member (kev_due_date_key = -1)</td>
+    <td align="right">0</td>
+    <td align="right">122</td>
+    <td align="left">WARN</td>
+    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_cwe</td>
+    <td align="left">Rows without matching dim_cve (cve_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">3389 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_cwe</td>
+    <td align="left">Rows without matching dim_cwe (cwe_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">3389 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_product</td>
+    <td align="left">Rows without matching dim_cve (cve_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">16087 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_product</td>
+    <td align="left">Rows without matching dim_product (product_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">16087 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_product_software_map</td>
+    <td align="left">Rows without matching dim_product (product_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">9 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_product_software_map</td>
+    <td align="left">Rows without matching dim_software (software_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">9 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="left">Rows without matching dim_asset (asset_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">423 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="left">Rows without matching dim_date (snapshot_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">423 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="left">Rows without matching dim_software (software_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">423 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_asset (asset_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_cve (cve_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_cvss (cvss_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_date (assessment_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_date (first_detected_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_date (remediation_due_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_kev_status (kev_status_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_product (product_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_risk_band (risk_band_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">Rows without matching dim_software (software_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">854 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_cve (cve_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_cvss (cvss_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_date (assessment_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_date (kev_date_added_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_date (kev_due_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_date (last_modified_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_date (published_date_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_kev_status (kev_status_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">Rows without matching dim_risk_band (risk_band_key)</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+</table>
+
+<h2>4. Accuracy - reconciliation and recomputation (per batch and warehouse-wide)</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">scope</th>
+    <th align="center">check_name</th>
+    <th align="center">expected</th>
+    <th align="center">actual</th>
+    <th align="center">status</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">496.7</td>
+    <td align="right">496.7</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">16.295290</td>
+    <td align="right">16.295290</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">12</td>
+    <td align="right">12</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">556.6</td>
+    <td align="right">556.6</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">17.534770</td>
+    <td align="right">17.534770</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">12</td>
+    <td align="right">12</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">25.9</td>
+    <td align="right">25.9</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">1.675040</td>
+    <td align="right">1.675040</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Confirmed exposures whose version is not in the affected range</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Exposure EPSS / CVSS / KEV equal the snapshot of the same CVE and date</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Exposure rows whose asset is not in the inventory snapshot of that date</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+</table>
+
+<h2>5. Completeness - source rows = staged + rejected, missing values</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">scope</th>
+    <th align="center">check_name</th>
+    <th align="center">target_table</th>
+    <th align="center">expected</th>
+    <th align="center">actual</th>
+    <th align="center">status</th>
+    <th align="center">details</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">14172</td>
+    <td align="right">14172</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2212</td>
+    <td align="right">2212</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">5</td>
+    <td align="right">5</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2228</td>
+    <td align="right">2228</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 67 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 67 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">4922</td>
+    <td align="right">4922</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1158</td>
+    <td align="right">1158</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1177</td>
+    <td align="right">1177</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 79 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 79 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Asset rows = staged + rejected</td>
+    <td align="left">stg_asset</td>
+    <td align="right">243</td>
+    <td align="right">243</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_asset vs stg_asset + stg_reject (field fixes excluded)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Every staged asset has a current dim_asset row</td>
+    <td align="left">dim_asset</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">staged assets vs assets found in dim_asset</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">467</td>
+    <td align="right">467</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">497</td>
+    <td align="right">497</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1739</td>
+    <td align="right">1739</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">500</td>
+    <td align="right">500</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 3 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 3 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Current CVEs without a CWE</td>
+    <td align="left">dim_cve</td>
+    <td align="right">0</td>
+    <td align="right">42</td>
+    <td align="left">WARN</td>
+    <td align="left">2841 current CVEs; NVD has not assigned a weakness yet</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Current CVEs without an English description</td>
+    <td align="left">dim_cve</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">2841 current CVEs; missing descriptions were filled with a default text</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">KEV CVEs not (yet) in the NVD feed</td>
+    <td align="left">cur_kev_catalog</td>
+    <td align="right">0</td>
+    <td align="right">1727</td>
+    <td align="left">WARN</td>
+    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1739 KEV entries in total</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Loaded batches with a vulnerability snapshot</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <td align="left">PASS</td>
+    <td align="left">one snapshot date per successfully loaded batch</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Loaded batches with an inventory snapshot</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">3</td>
+    <td align="right">3</td>
+    <td align="left">PASS</td>
+    <td align="left">one snapshot date per successfully loaded batch</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 10,000 fact records</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">10000</td>
+    <td align="right">854</td>
+    <td align="left">WARN</td>
+    <td align="left">854 rows from 3 loaded batches</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 10,000 fact records</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">10000</td>
+    <td align="right">149</td>
+    <td align="left">WARN</td>
+    <td align="left">149 rows from 3 loaded batches</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_product</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">3718 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_date</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">18626 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_cve</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">2884 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_asset</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">141 rows</td>
+  </tr>
+</table>
+
+<h2>6. Uniqueness and validity</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">check_category</th>
+    <th align="center">check_name</th>
+    <th align="center">target_table</th>
+    <th align="center">expected</th>
+    <th align="center">actual</th>
+    <th align="center">status</th>
+    <th align="center">details</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Assets with more than one current row</td>
+    <td align="left">dim_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">SCD2: exactly one is_current row per asset_id</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">CVEs with more than one current row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">SCD2: exactly one is_current row per cve_id</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">CVEs with no current row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">every cve_id must have a current version</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate natural keys</td>
+    <td align="left">dim_product</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">vendor:product</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate natural keys</td>
+    <td align="left">dim_date</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">full_date</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate natural keys</td>
+    <td align="left">dim_cwe</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">cwe_code</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate natural keys</td>
+    <td align="left">dim_software</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">software name + version</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate rows at the declared grain</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">CVE x asset x software x assessment date</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate rows at the declared grain</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">CVE x snapshot date</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate rows at the declared grain</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">asset x software x snapshot date</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Overlapping SCD2 date ranges</td>
+    <td align="left">dim_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">versions of the same asset whose effective ranges overlap</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Overlapping SCD2 date ranges</td>
+    <td align="left">dim_cve</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">versions of the same CVE whose effective ranges overlap</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">Asset criticality outside Critical/High/Medium/Low (BR-06)</td>
+    <td align="left">dim_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">141 asset rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">CVSS outside 0-10 (BR-03)</td>
+    <td align="left">dim_cvss</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">565 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">days_to_kev_due_date &lt;&gt; KEV due date - assessment date</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">27 KEV rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">EPSS outside 0-1 (BR-02)</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">149 rows checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">KEV due date before date added (BR-05)</td>
+    <td align="left">cur_kev_catalog</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">1739 KEV entries checked</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">KEV flag disagrees with dim_kev_status</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">kev_listed_flag vs dim_kev_status.is_kev_listed</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">KEV flag disagrees with dim_kev_status</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">kev_listed_flag vs dim_kev_status.is_kev_listed</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">Risk band does not match the risk score</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">score must fall inside the band's min/max</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Validity</td>
+    <td align="left">Risk band does not match the risk score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">score must fall inside the band's min/max</td>
+  </tr>
+</table>
+
+<h2>7. Findings</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">status</th>
+    <th align="center">check_name</th>
+    <th align="center">target_table</th>
+    <th align="center">actual</th>
+    <th align="center">details</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Current CVEs without a CWE</td>
+    <td align="left">dim_cve</td>
+    <td align="right">42</td>
+    <td align="left">2841 current CVEs; NVD has not assigned a weakness yet</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">KEV CVEs not (yet) in the NVD feed</td>
+    <td align="left">cur_kev_catalog</td>
+    <td align="right">1727</td>
+    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1739 KEV entries in total</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Phase 2 target: at least 10,000 fact records</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">149</td>
+    <td align="left">149 rows from 3 loaded batches</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Phase 2 target: at least 10,000 fact records</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="right">854</td>
+    <td align="left">854 rows from 3 loaded batches</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Rows pointing at the Unknown member (kev_date_added_key = -1)</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">122</td>
+    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Rows pointing at the Unknown member (kev_due_date_key = -1)</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">122</td>
+    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+  </tr>
+</table>
+
+<p>All WARN rows are gaps in the public source data (e.g. KEV CVEs not yet in the NVD sample, CVEs NVD has not classified) or the volume target, which is met when all incremental batches are loaded with sql/run/load_all_batches.sql. No FAIL results means every load reconciled and every foreign key resolved.</p>
+</body></html>

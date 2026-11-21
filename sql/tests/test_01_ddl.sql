@@ -11,7 +11,8 @@
                     surrogate key start values, referential integrity).
 
    Everything runs inside one transaction that is rolled back, so the
-   warehouse is left untouched. The script ends with an error (non-zero exit
+   warehouse is left untouched. Test rows use values that never occur in real
+   data (CVE-2099-*, AST-TEST-*), so the tests work on an empty or a loaded warehouse. The script ends with an error (non-zero exit
    code under ON_ERROR_STOP) if any test fails.
 
    Run: psql -U postgres -d intel_dw -v ON_ERROR_STOP=1 -f sql/tests/test_01_ddl.sql
@@ -148,85 +149,87 @@ BEGIN
 
     INSERT INTO dim_date (date_key, full_date, day_number, day_name, week_number, month_number, month_name, quarter_number, year_number, is_weekend)
     VALUES (-1, NULL, NULL, 'Unknown', NULL, NULL, 'Unknown', NULL, NULL, NULL),
-           (20261010, DATE '2026-10-10', 10, 'Saturday', 41, 10, 'October', 4, 2026, TRUE);
+           (20261010, DATE '2026-10-10', 10, 'Saturday', 41, 10, 'October', 4, 2026, TRUE)
+    ON CONFLICT (date_key) DO NOTHING;
 
     INSERT INTO dim_cve (cve_key, cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date)
-    VALUES (-1, 'Unknown', -1, -1, md5(''), DATE '1900-01-01');
+    VALUES (-1, 'Unknown', -1, -1, md5(''), DATE '1900-01-01')
+    ON CONFLICT (cve_key) DO NOTHING;
     INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date)
-    VALUES ('CVE-2021-41773', 20261010, 20261010, md5('v1'), DATE '2026-10-10');
+    VALUES ('CVE-2099-9001', 20261010, 20261010, md5('v1'), DATE '2026-10-10');
 
     INSERT INTO dim_product (vendor_name, product_name, vendor_product_name, normalization_status)
-    VALUES ('apache', 'http_server', 'apache:http_server', 'CPE');
+    VALUES ('testvendor', 'testproduct', 'testvendor:testproduct', 'CPE');
     INSERT INTO dim_software (software_name, software_version, normalized_software_name, normalization_status)
-    VALUES ('Apache HTTP Server', '2.4.49', 'apache http server', 'Mapped');
+    VALUES ('Test Server', '2.4.49', 'test server', 'Mapped');
     INSERT INTO dim_cvss (cvss_version, base_score, base_severity, vector_string)
-    VALUES ('3.1', 7.5, 'HIGH', 'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N');
+    VALUES ('3.1', 7.5, 'HIGH', 'TEST/VECTOR');
     INSERT INTO dim_kev_status (is_kev_listed, known_ransomware_use, forensic_triage_required, required_action)
-    VALUES (TRUE, 'Known', FALSE, 'Apply updates per vendor instructions.');
+    VALUES (TRUE, 'Known', FALSE, 'Test required action.');
     INSERT INTO dim_risk_band (risk_band_name, minimum_score, maximum_score, priority_rank, remediation_sla_days)
-    VALUES ('Critical', 70, 100, 1, 15);
-    INSERT INTO dim_cwe (cwe_code, cwe_description) VALUES ('CWE-22', 'Path Traversal');
+    VALUES ('Test band', 200, 300, 50, 15);
+    INSERT INTO dim_cwe (cwe_code, cwe_description) VALUES ('CWE-999999', 'Test weakness');
 
     CREATE TEMP TABLE k ON COMMIT DROP AS
-    SELECT (SELECT cve_key FROM dim_cve WHERE cve_id = 'CVE-2021-41773')  AS cve,
-           (SELECT product_key FROM dim_product)                          AS product,
-           (SELECT software_key FROM dim_software)                        AS software,
-           (SELECT cvss_key FROM dim_cvss)                                AS cvss,
-           (SELECT kev_status_key FROM dim_kev_status)                    AS kev,
-           (SELECT risk_band_key FROM dim_risk_band)                      AS band,
-           (SELECT cwe_key FROM dim_cwe)                                  AS cwe;
+    SELECT (SELECT cve_key FROM dim_cve WHERE cve_id = 'CVE-2099-9001')  AS cve,
+           (SELECT product_key FROM dim_product WHERE vendor_product_name = 'testvendor:testproduct')                        AS product,
+           (SELECT software_key FROM dim_software WHERE normalized_software_name = 'test server')                      AS software,
+           (SELECT cvss_key FROM dim_cvss WHERE vector_string = 'TEST/VECTOR')                              AS cvss,
+           (SELECT kev_status_key FROM dim_kev_status WHERE required_action = 'Test required action.')                  AS kev,
+           (SELECT risk_band_key FROM dim_risk_band WHERE risk_band_name = 'Test band')                    AS band,
+           (SELECT cwe_key FROM dim_cwe WHERE cwe_code = 'CWE-999999')                                AS cwe;
 
     -- Surrogate keys
     PERFORM pg_temp.expect_ok('surrogate key', 'dim_asset accepts a new asset',
            $q$INSERT INTO dim_asset (asset_id, criticality_level, asset_criticality_score, internet_exposed_flag, active_flag, row_hash, effective_start_date)
-              VALUES ('AST-APACHE-01', 'Medium', 2, TRUE, TRUE, md5('a1'), DATE '2026-10-10')$q$);
+              VALUES ('AST-TEST-99', 'Medium', 2, TRUE, TRUE, md5('a1'), DATE '2026-10-10')$q$);
     PERFORM pg_temp.expect_true('surrogate key', 'dim_asset surrogate key sequence starts at 1001',
            (SELECT seqstart FROM pg_sequence WHERE seqrelid = pg_get_serial_sequence('project_dw.dim_asset', 'asset_key')::regclass) = 1001);
     PERFORM pg_temp.expect_true('surrogate key', 'generated dim_asset key is >= 1001',
-           (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01') >= 1001,
-           'got ' || (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'));
+           (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99') >= 1001,
+           'got ' || (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'));
     PERFORM pg_temp.expect_true('surrogate key', 'surrogate key differs from business key and both are stored',
-           (SELECT asset_key::text <> asset_id FROM dim_asset WHERE asset_id = 'AST-APACHE-01'));
+           (SELECT asset_key::text <> asset_id FROM dim_asset WHERE asset_id = 'AST-TEST-99'));
     PERFORM pg_temp.expect_true('surrogate key', 'unknown member -1 coexists with generated keys',
            (SELECT count(*) FROM dim_cve WHERE cve_key = -1) = 1 AND (SELECT min(cve_key) FROM dim_cve WHERE cve_key > 0) >= 1);
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_product natural key vendor:product is unique',
            $q$INSERT INTO dim_product (vendor_name, product_name, vendor_product_name, normalization_status)
-              VALUES ('apache', 'http_server', 'apache:http_server', 'CPE')$q$, '23505');
+              VALUES ('testvendor', 'testproduct', 'testvendor:testproduct', 'CPE')$q$, '23505');
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_cwe natural key cwe_code is unique',
-           $q$INSERT INTO dim_cwe (cwe_code) VALUES ('CWE-22')$q$, '23505');
+           $q$INSERT INTO dim_cwe (cwe_code) VALUES ('CWE-999999')$q$, '23505');
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_software natural key (name, version) is unique',
            $q$INSERT INTO dim_software (software_name, software_version, normalized_software_name, normalization_status)
-              VALUES ('APACHE HTTP SERVER', '2.4.49', 'apache http server', 'Mapped')$q$, '23505');
+              VALUES ('TEST SERVER', '2.4.49', 'test server', 'Mapped')$q$, '23505');
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_cvss rejects duplicate version+vector+score',
            $q$INSERT INTO dim_cvss (cvss_version, base_score, base_severity, vector_string)
-              VALUES ('3.1', 7.5, 'HIGH', 'CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N')$q$, '23505');
+              VALUES ('3.1', 7.5, 'HIGH', 'TEST/VECTOR')$q$, '23505');
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_cvss treats NULL vectors as equal (single "no CVSS" member)',
            $q$INSERT INTO dim_cvss (cvss_version, base_score, vector_string) VALUES (NULL, NULL, NULL), (NULL, NULL, NULL)$q$, '23505');
     PERFORM pg_temp.expect_fail('surrogate key', 'dim_kev_status rejects duplicate flag combination',
            $q$INSERT INTO dim_kev_status (is_kev_listed, known_ransomware_use, forensic_triage_required, required_action)
-              VALUES (TRUE, 'Known', FALSE, 'Apply updates per vendor instructions.')$q$, '23505');
+              VALUES (TRUE, 'Known', FALSE, 'Test required action.')$q$, '23505');
 
     -- SCD Type 2
     PERFORM pg_temp.expect_fail('scd2', 'dim_cve allows only one current row per cve_id',
            $q$INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date)
-              VALUES ('CVE-2021-41773', 20261010, 20261010, md5('v2'), DATE '2026-10-11')$q$, '23505');
+              VALUES ('CVE-2099-9001', 20261010, 20261010, md5('v2'), DATE '2026-10-11')$q$, '23505');
     PERFORM pg_temp.expect_ok('scd2', 'dim_cve accepts a new version after expiring the old one',
-           $q$UPDATE dim_cve SET is_current = FALSE, effective_end_date = DATE '2026-10-10' WHERE cve_id = 'CVE-2021-41773';
+           $q$UPDATE dim_cve SET is_current = FALSE, effective_end_date = DATE '2026-10-10' WHERE cve_id = 'CVE-2099-9001';
               INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date)
-              VALUES ('CVE-2021-41773', 20261010, 20261010, md5('v2'), DATE '2026-10-11')$q$);
+              VALUES ('CVE-2099-9001', 20261010, 20261010, md5('v2'), DATE '2026-10-11')$q$);
     PERFORM pg_temp.expect_true('scd2', 'two versions of the CVE, exactly one current',
-           (SELECT count(*) = 2 AND count(*) FILTER (WHERE is_current) = 1 FROM dim_cve WHERE cve_id = 'CVE-2021-41773'));
+           (SELECT count(*) = 2 AND count(*) FILTER (WHERE is_current) = 1 FROM dim_cve WHERE cve_id = 'CVE-2099-9001'));
     PERFORM pg_temp.expect_fail('scd2', 'dim_cve rejects two versions starting the same day',
            $q$INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date, is_current)
-              VALUES ('CVE-2021-41773', 20261010, 20261010, md5('v3'), DATE '2026-10-11', FALSE)$q$, '23505');
+              VALUES ('CVE-2099-9001', 20261010, 20261010, md5('v3'), DATE '2026-10-11', FALSE)$q$, '23505');
     PERFORM pg_temp.expect_fail('scd2', 'dim_cve rejects end date before start date',
            $q$INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date, effective_end_date)
-              VALUES ('CVE-2000-0001', 20261010, 20261010, md5('x'), DATE '2026-10-10', DATE '2026-10-01')$q$, '23514');
+              VALUES ('CVE-2099-0001', 20261010, 20261010, md5('x'), DATE '2026-10-10', DATE '2026-10-01')$q$, '23514');
     PERFORM pg_temp.expect_fail('scd2', 'dim_asset allows only one current row per asset_id',
-           $q$INSERT INTO dim_asset (asset_id, row_hash, effective_start_date) VALUES ('AST-APACHE-01', md5('a2'), DATE '2026-10-12')$q$, '23505');
+           $q$INSERT INTO dim_asset (asset_id, row_hash, effective_start_date) VALUES ('AST-TEST-99', md5('a2'), DATE '2026-10-12')$q$, '23505');
     PERFORM pg_temp.expect_fail('scd2', 'dim_cve rejects a published date missing from dim_date',
            $q$INSERT INTO dim_cve (cve_id, published_date_key, last_modified_date_key, row_hash, effective_start_date)
-              VALUES ('CVE-2000-0002', 19990101, 20261010, md5('x'), DATE '2026-10-10')$q$, '23503');
+              VALUES ('CVE-2099-0002', 19700101, 20261010, md5('x'), DATE '2026-10-10')$q$, '23503');
 
     -- Referential integrity and grain of the facts
     PERFORM pg_temp.expect_ok('fact', 'valid vulnerability snapshot row loads',
@@ -270,29 +273,29 @@ BEGIN
     PERFORM pg_temp.expect_ok('fact', 'valid inventory snapshot row loads',
            format($q$INSERT INTO fact_asset_software_inventory_snapshot
               (snapshot_date_key, asset_key, software_key, active_asset_flag, internet_exposed_flag, asset_criticality_score, batch_id)
-              VALUES (20261010, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, 1, 1, 2, 'test')$q$, (SELECT software FROM k)));
+              VALUES (20261010, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, 1, 1, 2, 'test')$q$, (SELECT software FROM k)));
     PERFORM pg_temp.expect_fail('fact', 'inventory grain: one row per asset/software/date',
            format($q$INSERT INTO fact_asset_software_inventory_snapshot
               (snapshot_date_key, asset_key, software_key, active_asset_flag, internet_exposed_flag, asset_criticality_score, batch_id)
-              VALUES (20261010, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, 1, 1, 2, 'test')$q$, (SELECT software FROM k)), '23505');
+              VALUES (20261010, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, 1, 1, 2, 'test')$q$, (SELECT software FROM k)), '23505');
     PERFORM pg_temp.expect_fail('fact', 'inventory rejects criticality score outside 1..4',
            format($q$INSERT INTO fact_asset_software_inventory_snapshot
               (snapshot_date_key, asset_key, software_key, active_asset_flag, internet_exposed_flag, asset_criticality_score, batch_id)
-              VALUES (-1, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, 1, 1, 5, 'test')$q$, (SELECT software FROM k)), '23514');
+              VALUES (-1, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, 1, 1, 5, 'test')$q$, (SELECT software FROM k)), '23514');
 
     PERFORM pg_temp.expect_ok('fact', 'valid exposure row loads',
            format($q$INSERT INTO fact_asset_vulnerability_exposure
               (assessment_date_key, remediation_due_date_key, first_detected_date_key, cve_key, asset_key, software_key, product_key,
                cvss_key, kev_status_key, risk_band_key, match_confidence, version_match_flag, asset_criticality_score,
                internet_exposed_flag, epss_score, cvss_base_score, kev_listed_flag, risk_priority_score, remediation_status, days_open, batch_id)
-              VALUES (20261010, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 0.94, 7.5, 1, 78.45, 'Open', 0, 'test')$q$,
+              VALUES (20261010, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 0.94, 7.5, 1, 78.45, 'Open', 0, 'test')$q$,
               (SELECT cve FROM k), (SELECT software FROM k), (SELECT product FROM k), (SELECT cvss FROM k), (SELECT kev FROM k), (SELECT band FROM k)));
     PERFORM pg_temp.expect_fail('fact', 'exposure grain: one row per CVE/asset/software/date',
            format($q$INSERT INTO fact_asset_vulnerability_exposure
               (assessment_date_key, remediation_due_date_key, first_detected_date_key, cve_key, asset_key, software_key, product_key,
                cvss_key, kev_status_key, risk_band_key, match_confidence, version_match_flag, asset_criticality_score,
                internet_exposed_flag, kev_listed_flag, risk_priority_score, remediation_status, days_open, batch_id)
-              VALUES (20261010, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, %s, %s, %s, %s, 'Probable', 0, 2, 1, 1, 50, 'Open', 0, 'test')$q$,
+              VALUES (20261010, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, %s, %s, %s, %s, 'Probable', 0, 2, 1, 1, 50, 'Open', 0, 'test')$q$,
               (SELECT cve FROM k), (SELECT software FROM k), (SELECT product FROM k), (SELECT cvss FROM k), (SELECT kev FROM k), (SELECT band FROM k)), '23505');
     PERFORM pg_temp.expect_fail('fact', 'exposure rejects an orphan asset_key',
            format($q$INSERT INTO fact_asset_vulnerability_exposure
@@ -306,33 +309,33 @@ BEGIN
               (assessment_date_key, remediation_due_date_key, first_detected_date_key, cve_key, asset_key, software_key, product_key,
                cvss_key, kev_status_key, risk_band_key, match_confidence, version_match_flag, asset_criticality_score,
                internet_exposed_flag, kev_listed_flag, risk_priority_score, remediation_status, days_open, batch_id)
-              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 1, 50, 'Pending', 0, 'test')$q$,
+              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 1, 50, 'Pending', 0, 'test')$q$,
               (SELECT cve FROM k), (SELECT software FROM k), (SELECT product FROM k), (SELECT cvss FROM k), (SELECT kev FROM k), (SELECT band FROM k)), '23514');
     PERFORM pg_temp.expect_fail('fact', 'exposure rejects an unknown match confidence',
            format($q$INSERT INTO fact_asset_vulnerability_exposure
               (assessment_date_key, remediation_due_date_key, first_detected_date_key, cve_key, asset_key, software_key, product_key,
                cvss_key, kev_status_key, risk_band_key, match_confidence, version_match_flag, asset_criticality_score,
                internet_exposed_flag, kev_listed_flag, risk_priority_score, remediation_status, days_open, batch_id)
-              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, %s, %s, %s, %s, 'Maybe', 1, 2, 1, 1, 50, 'Open', 0, 'test')$q$,
+              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, %s, %s, %s, %s, 'Maybe', 1, 2, 1, 1, 50, 'Open', 0, 'test')$q$,
               (SELECT cve FROM k), (SELECT software FROM k), (SELECT product FROM k), (SELECT cvss FROM k), (SELECT kev FROM k), (SELECT band FROM k)), '23514');
     PERFORM pg_temp.expect_fail('fact', 'exposure rejects negative days_open',
            format($q$INSERT INTO fact_asset_vulnerability_exposure
               (assessment_date_key, remediation_due_date_key, first_detected_date_key, cve_key, asset_key, software_key, product_key,
                cvss_key, kev_status_key, risk_band_key, match_confidence, version_match_flag, asset_criticality_score,
                internet_exposed_flag, kev_listed_flag, risk_priority_score, remediation_status, days_open, batch_id)
-              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-APACHE-01'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 1, 50, 'Open', -3, 'test')$q$,
+              VALUES (-1, 20261010, 20261010, %s, (SELECT asset_key FROM dim_asset WHERE asset_id = 'AST-TEST-99'), %s, %s, %s, %s, %s, 'Confirmed', 1, 2, 1, 1, 50, 'Open', -3, 'test')$q$,
               (SELECT cve FROM k), (SELECT software FROM k), (SELECT product FROM k), (SELECT cvss FROM k), (SELECT kev FROM k), (SELECT band FROM k)), '23514');
 
     -- Bridges
     PERFORM pg_temp.expect_ok('bridge', 'CVE-product bridge row with a version range loads',
            format($q$INSERT INTO bridge_cve_product (cve_key, product_key, cpe_criteria, version_start_including, version_end_excluding)
-              VALUES (%s, %s, 'cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*', '2.4.0', '2.4.51')$q$, (SELECT cve FROM k), (SELECT product FROM k)));
+              VALUES (%s, %s, 'cpe:2.3:a:testvendor:testproduct:*:*:*:*:*:*:*:*', '2.4.0', '2.4.51')$q$, (SELECT cve FROM k), (SELECT product FROM k)));
     PERFORM pg_temp.expect_fail('bridge', 'CVE-product bridge rejects the same range twice (NULL bounds compared as equal)',
            format($q$INSERT INTO bridge_cve_product (cve_key, product_key, cpe_criteria, version_start_including, version_end_excluding)
-              VALUES (%s, %s, 'cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*', '2.4.0', '2.4.51')$q$, (SELECT cve FROM k), (SELECT product FROM k)), '23505');
+              VALUES (%s, %s, 'cpe:2.3:a:testvendor:testproduct:*:*:*:*:*:*:*:*', '2.4.0', '2.4.51')$q$, (SELECT cve FROM k), (SELECT product FROM k)), '23505');
     PERFORM pg_temp.expect_ok('bridge', 'CVE-product bridge accepts a second, different range',
            format($q$INSERT INTO bridge_cve_product (cve_key, product_key, cpe_criteria, version_start_including, version_end_excluding)
-              VALUES (%s, %s, 'cpe:2.3:a:apache:http_server:*:*:*:*:*:*:*:*', '2.5.0', '2.5.3')$q$, (SELECT cve FROM k), (SELECT product FROM k)));
+              VALUES (%s, %s, 'cpe:2.3:a:testvendor:testproduct:*:*:*:*:*:*:*:*', '2.5.0', '2.5.3')$q$, (SELECT cve FROM k), (SELECT product FROM k)));
     PERFORM pg_temp.expect_fail('bridge', 'CVE-CWE bridge rejects duplicate pair',
            format($q$INSERT INTO bridge_cve_cwe VALUES (%1$s, %2$s), (%1$s, %2$s)$q$, (SELECT cve FROM k), (SELECT cwe FROM k)), '23505');
     PERFORM pg_temp.expect_fail('bridge', 'CVE-CWE bridge rejects an orphan cwe_key',
@@ -356,35 +359,35 @@ BEGIN
                                      internet_exposed_flag, active_flag, source_row_no, batch_id)
               VALUES ('T-1', 'h', 'x', '1', 'Low', 1, TRUE, TRUE, 4, 'test')$q$, '23505');
     PERFORM pg_temp.expect_ok('staging rule', 'BR-02 EPSS 0 and 1 are valid',
-           $q$INSERT INTO stg_epss VALUES ('CVE-1999-0001', DATE '2026-10-10', 0, 1, 'v2026.06.15', 'test'),
-                                          ('CVE-1999-0002', DATE '2026-10-10', 0.99999, 0.5, 'v2026.06.15', 'test')$q$);
+           $q$INSERT INTO stg_epss VALUES ('CVE-2099-1001', DATE '2026-10-10', 0, 1, 'v2026.06.15', 'test'),
+                                          ('CVE-2099-1002', DATE '2026-10-10', 0.99999, 0.5, 'v2026.06.15', 'test')$q$);
     PERFORM pg_temp.expect_fail('staging rule', 'BR-02 EPSS above 1 is rejected',
-           $q$INSERT INTO stg_epss VALUES ('CVE-1999-0003', DATE '2026-10-10', 1.2, 0.5, NULL, 'test')$q$, '23514');
+           $q$INSERT INTO stg_epss VALUES ('CVE-2099-1003', DATE '2026-10-10', 1.2, 0.5, NULL, 'test')$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'BR-02 negative EPSS percentile is rejected',
-           $q$INSERT INTO stg_epss VALUES ('CVE-1999-0004', DATE '2026-10-10', 0.1, -0.5, NULL, 'test')$q$, '23514');
+           $q$INSERT INTO stg_epss VALUES ('CVE-2099-1004', DATE '2026-10-10', 0.1, -0.5, NULL, 'test')$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'EPSS is unique per CVE and score date',
-           $q$INSERT INTO stg_epss VALUES ('CVE-1999-0001', DATE '2026-10-10', 0.2, 0.2, NULL, 'test')$q$, '23505');
+           $q$INSERT INTO stg_epss VALUES ('CVE-2099-1001', DATE '2026-10-10', 0.2, 0.2, NULL, 'test')$q$, '23505');
     PERFORM pg_temp.expect_ok('staging rule', 'BR-03 CVSS 0.0 and 10.0 are valid',
            $q$INSERT INTO stg_cve (cve_id, published_at, last_modified_at, cvss_base_score, batch_id)
-              VALUES ('CVE-2000-0010', now(), now(), 0.0, 'test'), ('CVE-2000-0011', now(), now(), 10.0, 'test')$q$);
+              VALUES ('CVE-2099-0010', now(), now(), 0.0, 'test'), ('CVE-2099-0011', now(), now(), 10.0, 'test')$q$);
     PERFORM pg_temp.expect_fail('staging rule', 'BR-03 CVSS above 10 is rejected',
            $q$INSERT INTO stg_cve (cve_id, published_at, last_modified_at, cvss_base_score, batch_id)
-              VALUES ('CVE-2000-0012', now(), now(), 10.5, 'test')$q$, '23514');
+              VALUES ('CVE-2099-0012', now(), now(), 10.5, 'test')$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'BR-01 CVE without an ID is rejected',
            $q$INSERT INTO stg_cve (cve_id, published_at, last_modified_at, batch_id) VALUES (NULL, now(), now(), 'test')$q$, '23502');
     PERFORM pg_temp.expect_ok('staging rule', 'BR-05 KEV due date on/after date added is valid',
            $q$INSERT INTO stg_kev (cve_id, date_added, due_date, known_ransomware_use, forensic_triage_required, batch_id)
-              VALUES ('CVE-2021-41773', DATE '2021-11-03', DATE '2021-11-17', 'Known', FALSE, 'test')$q$);
+              VALUES ('CVE-2099-9001', DATE '2021-11-03', DATE '2021-11-17', 'Known', FALSE, 'test')$q$);
     PERFORM pg_temp.expect_fail('staging rule', 'BR-05 KEV due date before date added is rejected',
            $q$INSERT INTO stg_kev (cve_id, date_added, due_date, known_ransomware_use, forensic_triage_required, batch_id)
-              VALUES ('CVE-2021-42013', DATE '2021-11-03', DATE '2021-10-01', 'Unknown', FALSE, 'test')$q$, '23514');
+              VALUES ('CVE-2099-9004', DATE '2021-11-03', DATE '2021-10-01', 'Unknown', FALSE, 'test')$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'KEV ransomware value must be Known/Unknown',
            $q$INSERT INTO stg_kev (cve_id, date_added, due_date, known_ransomware_use, forensic_triage_required, batch_id)
-              VALUES ('CVE-2021-42014', DATE '2021-11-03', DATE '2021-11-17', 'maybe', FALSE, 'test')$q$, '23514');
+              VALUES ('CVE-2099-9005', DATE '2021-11-03', DATE '2021-11-17', 'maybe', FALSE, 'test')$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'CPE row with NULL bounds cannot be staged twice',
            $q$INSERT INTO stg_cve_cpe (cve_id, cpe_criteria, cpe_vendor, cpe_product, batch_id)
-              VALUES ('CVE-2000-0010', 'cpe:2.3:a:x:y:1.0:*:*:*:*:*:*:*', 'x', 'y', 't'),
-                     ('CVE-2000-0010', 'cpe:2.3:a:x:y:1.0:*:*:*:*:*:*:*', 'x', 'y', 't')$q$, '23505');
+              VALUES ('CVE-2099-0010', 'cpe:2.3:a:x:y:1.0:*:*:*:*:*:*:*', 'x', 'y', 't'),
+                     ('CVE-2099-0010', 'cpe:2.3:a:x:y:1.0:*:*:*:*:*:*:*', 'x', 'y', 't')$q$, '23505');
     PERFORM pg_temp.expect_fail('staging rule', 'reference mapping rejects unknown match method',
            $q$INSERT INTO ref_software_product_map VALUES ('Nginx', 'F5', 'Web Server', 'f5', 'nginx', 'Guess', 'Confirmed', NULL)$q$, '23514');
     PERFORM pg_temp.expect_fail('staging rule', 'batch log rejects unknown load type',

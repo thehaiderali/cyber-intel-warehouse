@@ -1,0 +1,840 @@
+<html><head><meta charset="utf-8"><title>Data Cleaning Report</title><style>body{font-family:Arial,sans-serif;margin:28px;font-size:12px} h1{font-size:22px} h2{font-size:15px;margin-top:22px} th{background:#e8eef5}</style></head><body>
+<h1>Data Cleaning Report</h1>
+<p>DL3004 Phase 2 - Cyber Intel Warehouse. Afras Shahnawaz (24L-2547), Rana Nauman Iqbal (24L-2565), Haider Ali (24L-2522).</p>
+<p>Generated from <code>project_staging.etl_step_log</code>, <code>etl_cleaning_stat</code> and <code>stg_reject</code>. Sources: NVD CVE JSON, EPSS CSV, CISA KEV JSON, Cortexa asset inventory CSV plus 130 synthetic assets with deliberately injected dirty values.</p>
+<h2>1. Cleaning rules applied</h2>
+<ul><li><b>Remove duplicates</b> - one row per business key (asset_id, cve_id, CVE+score date); first/latest record kept, the rest logged as DQ-DUP.</li>
+<li><b>Handle NULL values</b> - missing owner/department -> Unassigned; missing description -> default text; invalid IP -> NULL; missing CVSS -> Unknown member (-1); missing business key -> rejected.</li>
+<li><b>Standardise text</b> - trim, collapse spaces, controlled-value dictionary (e.g. " lahore " / "LAHORE" -> Lahore, PROD -> Production, k8s -> Kubernetes).</li>
+<li><b>Convert data types</b> - text -> DATE / TIMESTAMP / NUMERIC(8,6) / NUMERIC(3,1) / BOOLEAN; software versions stay text (BR-04).</li>
+<li><b>Validate business rules</b> - BR-01 CVE ID format, BR-02 EPSS 0-1, BR-03 CVSS 0-10, BR-05 KEV due date >= date added, BR-06 controlled criticality.</li></ul>
+<h2>2. Batches loaded</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">batch_id</th>
+    <th align="center">batch_date</th>
+    <th align="center">load_type</th>
+    <th align="center">status</th>
+    <th align="center">duration</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">2026-10-08</td>
+    <td align="left">full</td>
+    <td align="left">Success</td>
+    <td align="left">00:00:26.887418</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">2026-10-09</td>
+    <td align="left">incremental</td>
+    <td align="left">Success</td>
+    <td align="left">00:00:33.010674</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">2026-10-10</td>
+    <td align="left">incremental</td>
+    <td align="left">Success</td>
+    <td align="left">00:00:30.819455</td>
+  </tr>
+</table>
+
+<h2>3. Row counts per staging step (input / output / rejected)</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">batch_id</th>
+    <th align="center">step_name</th>
+    <th align="center">target_table</th>
+    <th align="center">rows_in</th>
+    <th align="center">rows_out</th>
+    <th align="center">rows_rejected</th>
+    <th align="center">message</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Extract NVD JSON</td>
+    <td align="left">raw_nvd_document</td>
+    <td align="right">94069</td>
+    <td align="right">500</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = CVE records in the document (totalResults 45073)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Extract EPSS CSV</td>
+    <td align="left">raw_epss</td>
+    <td align="right">384995</td>
+    <td align="right">384993</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines (incl. comment + header), rows_out = data rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Extract KEV JSON</td>
+    <td align="left">raw_kev_document</td>
+    <td align="right">27597</td>
+    <td align="right">1739</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = KEV entries (catalogVersion 2026.10.08)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Extract asset inventory CSV</td>
+    <td align="left">raw_asset</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">C:/Users/hyder/Desktop/DWBI/cyber-threat-intel/data/sample_raw/full_load/cortexa_assets_full_sample.csv</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Generate synthetic assets</td>
+    <td align="left">raw_asset</td>
+    <td align="right">130</td>
+    <td align="right">143</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">130 synthetic assets, 13 duplicate rows injected</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Clean asset inventory</td>
+    <td align="left">stg_asset</td>
+    <td align="right">243</td>
+    <td align="right">141</td>
+    <td align="right">102</td>
+    <td align="left">duplicates removed 93, BR-06 rejects 5, missing key 4, invalid IPs nulled 6</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Clean NVD CVEs</td>
+    <td align="left">stg_cve</td>
+    <td align="right">500</td>
+    <td align="right">497</td>
+    <td align="right">3</td>
+    <td align="left">malformed id 0, rejected by NVD 3, duplicates 0, CWE links 575, CPE matches 467</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Clean EPSS scores</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="right">0</td>
+    <td align="left">score date 2026-10-09, model v2026.06.15, BR-01 0, BR-02 0, duplicates 0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">Clean KEV catalog</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1739</td>
+    <td align="right">1739</td>
+    <td align="right">0</td>
+    <td align="left">BR-01 0, BR-05 0, duplicates 0; KEV catalog now 1739 CVEs</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Extract NVD JSON</td>
+    <td align="left">raw_nvd_document</td>
+    <td align="right">681911</td>
+    <td align="right">2228</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = CVE records in the document (totalResults 2228)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Extract EPSS CSV</td>
+    <td align="left">raw_epss</td>
+    <td align="right">384995</td>
+    <td align="right">384993</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines (incl. comment + header), rows_out = data rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Extract KEV JSON</td>
+    <td align="left">raw_kev_document</td>
+    <td align="right">88</td>
+    <td align="right">5</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = KEV entries (catalogVersion 2026.10.08)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Extract asset inventory CSV</td>
+    <td align="left">raw_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">No asset file in this batch - current inventory is carried forward</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Clean NVD CVEs</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2228</td>
+    <td align="right">2212</td>
+    <td align="right">16</td>
+    <td align="left">malformed id 0, rejected by NVD 16, duplicates 0, CWE links 2624, CPE matches 14172</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Clean EPSS scores</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="right">0</td>
+    <td align="left">score date 2026-10-09, model v2026.06.15, BR-01 0, BR-02 0, duplicates 0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">Clean KEV catalog</td>
+    <td align="left">stg_kev</td>
+    <td align="right">5</td>
+    <td align="right">5</td>
+    <td align="right">0</td>
+    <td align="left">BR-01 0, BR-05 0, duplicates 0; KEV catalog now 1739 CVEs</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Extract NVD JSON</td>
+    <td align="left">raw_nvd_document</td>
+    <td align="right">296320</td>
+    <td align="right">1177</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = CVE records in the document (totalResults 1177)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Extract EPSS CSV</td>
+    <td align="left">raw_epss</td>
+    <td align="right">384995</td>
+    <td align="right">384993</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines (incl. comment + header), rows_out = data rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Extract KEV JSON</td>
+    <td align="left">raw_kev_document</td>
+    <td align="right">7</td>
+    <td align="right">0</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">rows_in = file lines, rows_out = KEV entries (catalogVersion 2026.10.08)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Extract asset inventory CSV</td>
+    <td align="left">raw_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="right">&nbsp; </td>
+    <td align="left">No asset file in this batch - current inventory is carried forward</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Clean NVD CVEs</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1177</td>
+    <td align="right">1158</td>
+    <td align="right">19</td>
+    <td align="left">malformed id 0, rejected by NVD 19, duplicates 0, CWE links 1378, CPE matches 4922</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Clean EPSS scores</td>
+    <td align="left">stg_epss</td>
+    <td align="right">384993</td>
+    <td align="right">384993</td>
+    <td align="right">0</td>
+    <td align="left">score date 2026-10-09, model v2026.06.15, BR-01 0, BR-02 0, duplicates 0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">Clean KEV catalog</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">BR-01 0, BR-05 0, duplicates 0; KEV catalog now 1739 CVEs</td>
+  </tr>
+</table>
+
+<h2>4. Values changed by each cleaning rule (with a before / after example)</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">batch_id</th>
+    <th align="center">source</th>
+    <th align="center">column</th>
+    <th align="center">cleaning_rule</th>
+    <th align="center">rows_affected</th>
+    <th align="center">example_before</th>
+    <th align="center">example_after</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">criticality</td>
+    <td align="left">Map to controlled value</td>
+    <td align="right">19</td>
+    <td align="left">&nbsp;&nbsp;critical </td>
+    <td align="left">Critical</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">department</td>
+    <td align="left">Map to controlled value</td>
+    <td align="right">11</td>
+    <td align="left">DATA</td>
+    <td align="left">Data</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">environment</td>
+    <td align="left">Map to controlled value</td>
+    <td align="right">12</td>
+    <td align="left">dev </td>
+    <td align="left">Development</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">hostname</td>
+    <td align="left">Trim + lower case</td>
+    <td align="right">15</td>
+    <td align="left">&nbsp;&nbsp;APACHE-SYN-081 </td>
+    <td align="left">apache-syn-081</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">ip_address</td>
+    <td align="left">Invalid IP -&gt; NULL</td>
+    <td align="right">6</td>
+    <td align="left">300.114.4.19</td>
+    <td align="left">(NULL)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">location</td>
+    <td align="left">Trim + standardise case</td>
+    <td align="right">42</td>
+    <td align="left">&nbsp;KARACHI</td>
+    <td align="left">Karachi</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">owner</td>
+    <td align="left">Missing -&gt; Unassigned</td>
+    <td align="right">7</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">Unassigned</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">row</td>
+    <td align="left">Reject: BR-06</td>
+    <td align="right">5</td>
+    <td align="left">AST-SYN-023 / urgent</td>
+    <td align="left">(rejected)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">row</td>
+    <td align="left">Reject: DQ-KEY</td>
+    <td align="right">4</td>
+    <td align="left">(blank) / Critical</td>
+    <td align="left">(rejected)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">row</td>
+    <td align="left">Remove duplicate asset_id</td>
+    <td align="right">93</td>
+    <td align="left">AST-APACHE-01</td>
+    <td align="left">(removed)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">ASSET</td>
+    <td align="left">software_name</td>
+    <td align="left">Map to controlled value</td>
+    <td align="right">19</td>
+    <td align="left">&nbsp;mysql </td>
+    <td align="left">MySQL</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">EPSS</td>
+    <td align="left">epss / percentile</td>
+    <td align="left">Text -&gt; NUMERIC(8,6)</td>
+    <td align="right">384993</td>
+    <td align="left">0.00049</td>
+    <td align="left">0.000490</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">EPSS</td>
+    <td align="left">epss / percentile</td>
+    <td align="left">Text -&gt; NUMERIC(8,6)</td>
+    <td align="right">384993</td>
+    <td align="left">0.00049</td>
+    <td align="left">0.000490</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">EPSS</td>
+    <td align="left">epss / percentile</td>
+    <td align="left">Text -&gt; NUMERIC(8,6)</td>
+    <td align="right">384993</td>
+    <td align="left">0.00049</td>
+    <td align="left">0.000490</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">EPSS</td>
+    <td align="left">score_date</td>
+    <td align="left">Parsed from comment line</td>
+    <td align="right">1</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">2026-10-09</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">EPSS</td>
+    <td align="left">score_date</td>
+    <td align="left">Parsed from comment line</td>
+    <td align="right">1</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">2026-10-09</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">EPSS</td>
+    <td align="left">score_date</td>
+    <td align="left">Parsed from comment line</td>
+    <td align="right">1</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">2026-10-09</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">KEV</td>
+    <td align="left">forensic_triage</td>
+    <td align="left">Yes/No -&gt; BOOLEAN</td>
+    <td align="right">5</td>
+    <td align="left">No</td>
+    <td align="left">false</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV</td>
+    <td align="left">forensic_triage</td>
+    <td align="left">Yes/No -&gt; BOOLEAN</td>
+    <td align="right">1739</td>
+    <td align="left">No</td>
+    <td align="left">false</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV</td>
+    <td align="left">product</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">14</td>
+    <td align="left">&quot; Endpoint Manager (EPM)&quot;</td>
+    <td align="left">&quot;Endpoint Manager (EPM)&quot;</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV</td>
+    <td align="left">vendor_project</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">6</td>
+    <td align="left">&quot;Array Networks &quot;</td>
+    <td align="left">&quot;Array Networks&quot;</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">KEV</td>
+    <td align="left">vulnerability_name</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">1</td>
+    <td align="left">&quot; ISC BIND Data Processing Errors Vulnerability&quot;</td>
+    <td align="left">&quot;ISC BIND Data Processing Errors Vulnerability&quot;</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">KEV</td>
+    <td align="left">vulnerability_name</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">28</td>
+    <td align="left">&quot; Advantive VeraCore SQL Injection Vulnerability&quot;</td>
+    <td align="left">&quot;Advantive VeraCore SQL Injection Vulnerability&quot;</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cpe_match</td>
+    <td align="left">Remove duplicate CPE match</td>
+    <td align="right">127</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cpe_match</td>
+    <td align="left">Remove duplicate CPE match</td>
+    <td align="right">1</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">&nbsp; </td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cpe_version</td>
+    <td align="left">Wildcard version -&gt; NULL (any version)</td>
+    <td align="right">8748</td>
+    <td align="left">cpe:2.3:a:abbyy:finereader:*:*:*:*:*:*:*:*</td>
+    <td align="left">(NULL)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cpe_version</td>
+    <td align="left">Wildcard version -&gt; NULL (any version)</td>
+    <td align="right">3079</td>
+    <td align="left">cpe:2.3:a:apache:activemq_nms_amqp:*:*:*:*:*:*:*:*</td>
+    <td align="left">(NULL)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">cpe_version</td>
+    <td align="left">Wildcard version -&gt; NULL (any version)</td>
+    <td align="right">355</td>
+    <td align="left">cpe:2.3:a:aiohttp:aiohttp:*:*:*:*:*:*:*:*</td>
+    <td align="left">(NULL)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 2.0</td>
+    <td align="right">34</td>
+    <td align="left">cvssMetricV2 Primary</td>
+    <td align="left">2.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.0</td>
+    <td align="right">16</td>
+    <td align="left">cvssMetricV30 Secondary</td>
+    <td align="left">3.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.0</td>
+    <td align="right">13</td>
+    <td align="left">cvssMetricV30 Primary</td>
+    <td align="left">3.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.0</td>
+    <td align="right">4</td>
+    <td align="left">cvssMetricV30 Secondary</td>
+    <td align="left">3.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.1</td>
+    <td align="right">1947</td>
+    <td align="left">cvssMetricV31 Primary</td>
+    <td align="left">3.1</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.1</td>
+    <td align="right">997</td>
+    <td align="left">cvssMetricV31 Primary</td>
+    <td align="left">3.1</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 3.1</td>
+    <td align="right">457</td>
+    <td align="left">cvssMetricV31 Primary</td>
+    <td align="left">3.1</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 4.0</td>
+    <td align="right">213</td>
+    <td align="left">cvssMetricV40 Secondary</td>
+    <td align="left">4.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 4.0</td>
+    <td align="right">82</td>
+    <td align="left">cvssMetricV40 Secondary</td>
+    <td align="left">4.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">Chosen CVSS version 4.0</td>
+    <td align="right">36</td>
+    <td align="left">cvssMetricV40 Secondary</td>
+    <td align="left">4.0</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">No CVSS metric -&gt; unknown CVSS member</td>
+    <td align="right">36</td>
+    <td align="left">CVE-2025-61560</td>
+    <td align="left">(cvss_key -1)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">cvss</td>
+    <td align="left">No CVSS metric -&gt; unknown CVSS member</td>
+    <td align="right">32</td>
+    <td align="left">CVE-2025-61560</td>
+    <td align="left">(cvss_key -1)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">description_en</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">310</td>
+    <td align="left">** UNSUPPORTED WHEN ASSIGNED ** Inefficient Regular Expressi</td>
+    <td align="left">** UNSUPPORTED WHEN ASSIGNED ** Inefficient Regular Expressi</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">description_en</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">170</td>
+    <td align="left">** UNSUPPORTED WHEN ASSIGNED ** Inefficient Regular Expressi</td>
+    <td align="left">** UNSUPPORTED WHEN ASSIGNED ** Inefficient Regular Expressi</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">description_en</td>
+    <td align="left">Trim + collapse whitespace</td>
+    <td align="right">119</td>
+    <td align="left">A mass assignment vulnerability exists in the MISP user edit</td>
+    <td align="left">A mass assignment vulnerability exists in the MISP user edit</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-09_185004</td>
+    <td align="left">NVD</td>
+    <td align="left">row</td>
+    <td align="left">Reject: DQ-REJ</td>
+    <td align="right">16</td>
+    <td align="left">CVE-2026-100197</td>
+    <td align="left">(rejected)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-10_045631</td>
+    <td align="left">NVD</td>
+    <td align="left">row</td>
+    <td align="left">Reject: DQ-REJ</td>
+    <td align="right">19</td>
+    <td align="left">CVE-2025-8457</td>
+    <td align="left">(rejected)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">full_load</td>
+    <td align="left">NVD</td>
+    <td align="left">row</td>
+    <td align="left">Reject: DQ-REJ</td>
+    <td align="right">3</td>
+    <td align="left">CVE-2026-2596</td>
+    <td align="left">(rejected)</td>
+  </tr>
+</table>
+
+<h2>5. Rejected / quarantined records by rule</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">source</th>
+    <th align="center">rule_id</th>
+    <th align="center">records</th>
+    <th align="center">example_reason</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">BR-06</td>
+    <td align="right">5</td>
+    <td align="left">Criticality &quot;urgent&quot; is not Critical/High/Medium/Low</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">DQ-DUP</td>
+    <td align="right">93</td>
+    <td align="left">Duplicate asset_id - first occurrence in the file kept</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">DQ-FMT</td>
+    <td align="right">6</td>
+    <td align="left">Invalid IP address &quot;300.114.4.19&quot; set to NULL (row kept)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">DQ-KEY</td>
+    <td align="right">4</td>
+    <td align="left">Asset ID is missing</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">NVD</td>
+    <td align="left">DQ-REJ</td>
+    <td align="right">38</td>
+    <td align="left">Rejected by NVD and never loaded into the warehouse</td>
+  </tr>
+</table>
+
+<h2>6. Example rejected records</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">source</th>
+    <th align="center">business_key</th>
+    <th align="center">rule_id</th>
+    <th align="center">reject_reason</th>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-023</td>
+    <td align="left">BR-06</td>
+    <td align="left">Criticality &quot;urgent&quot; is not Critical/High/Medium/Low</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-046</td>
+    <td align="left">BR-06</td>
+    <td align="left">Criticality &quot;urgent&quot; is not Critical/High/Medium/Low</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-069</td>
+    <td align="left">BR-06</td>
+    <td align="left">Criticality &quot;urgent&quot; is not Critical/High/Medium/Low</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-130</td>
+    <td align="left">DQ-DUP</td>
+    <td align="left">Duplicate asset_id - first occurrence in the file kept</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-POSTGRES-01</td>
+    <td align="left">DQ-DUP</td>
+    <td align="left">Duplicate asset_id - first occurrence in the file kept</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-NODEJS-02</td>
+    <td align="left">DQ-DUP</td>
+    <td align="left">Duplicate asset_id - first occurrence in the file kept</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-019</td>
+    <td align="left">DQ-FMT</td>
+    <td align="left">Invalid IP address &quot;300.19.4.19&quot; set to NULL (row kept)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-038</td>
+    <td align="left">DQ-FMT</td>
+    <td align="left">Invalid IP address &quot;300.38.4.19&quot; set to NULL (row kept)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">AST-SYN-057</td>
+    <td align="left">DQ-FMT</td>
+    <td align="left">Invalid IP address &quot;300.57.4.19&quot; set to NULL (row kept)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">DQ-KEY</td>
+    <td align="left">Asset ID is missing</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">DQ-KEY</td>
+    <td align="left">Asset ID is missing</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">ASSET</td>
+    <td align="left">&nbsp; </td>
+    <td align="left">DQ-KEY</td>
+    <td align="left">Asset ID is missing</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">NVD</td>
+    <td align="left">CVE-2026-8762</td>
+    <td align="left">DQ-REJ</td>
+    <td align="left">Rejected by NVD and never loaded into the warehouse</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">NVD</td>
+    <td align="left">CVE-2026-42029</td>
+    <td align="left">DQ-REJ</td>
+    <td align="left">Rejected by NVD and never loaded into the warehouse</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">NVD</td>
+    <td align="left">CVE-2026-2596</td>
+    <td align="left">DQ-REJ</td>
+    <td align="left">Rejected by NVD and never loaded into the warehouse</td>
+  </tr>
+</table>
+
+<h2>7. Asset inventory before and after cleaning</h2>
+<table border="1" border="1" cellpadding="4" style="border-collapse:collapse;font-size:11px">
+  <tr>
+    <th align="center">attribute</th>
+    <th align="center">clean_value</th>
+    <th align="center">assets</th>
+  </tr>
+</table>
+
+<p>Note: stg_asset holds the latest batch with an inventory file (the full load).</p>
+</body></html>
