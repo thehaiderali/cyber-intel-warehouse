@@ -121,6 +121,7 @@ CREATE TABLE dim_asset (
     exposure_level          VARCHAR(30),
     internet_exposed_flag   BOOLEAN,
     active_flag             BOOLEAN,
+    asset_status            VARCHAR(30),                     -- Active / Maintenance / Decommissioned
     asset_owner             VARCHAR(255),
     department_name         VARCHAR(100),
     location_name           VARCHAR(100),
