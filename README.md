@@ -84,4 +84,4 @@ Cleaning results: `project_staging.etl_cleaning_stat`, `stg_reject`, `etl_step_l
 
 Risk bands (Phase 1 did not define thresholds): Critical >= 70, High 50-69.99, Medium 30-49.99, Low < 30; fix targets 15/30/60/90 days.
 
-Sample load result (full load + 2 batches): 141 assets (from 243 raw rows: 93 duplicates, 5 BR-06, 4 missing IDs), 2,841 CVEs, 854 exposure rows, all integrity/uniqueness/validity/accuracy checks PASS. The 10,000+ fact-row target is reached with `load_all_batches.sql`.
+Full load result (all 39 batches, `sql/run/load_all_batches.sql`): 141 assets (from 243 raw rows: 93 duplicates, 5 BR-06, 4 missing IDs), 72,009 `dim_cve` rows (all versions), 46,880 fact rows (33,791 exposure, 7,590 vulnerability snapshot, 5,499 inventory), 0 FAIL in the data quality checks. The 10,000+ fact-row target is met. A smaller sample load (full load + 2 batches) is available with `load_sample_batches.sql`.
