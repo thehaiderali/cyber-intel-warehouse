@@ -13,16 +13,16 @@
   </tr>
   <tr valign="top">
     <td align="left">Accuracy</td>
-    <td align="right">18</td>
-    <td align="right">18</td>
+    <td align="right">198</td>
+    <td align="right">198</td>
     <td align="right">0</td>
     <td align="right">0</td>
   </tr>
   <tr valign="top">
     <td align="left">Completeness</td>
-    <td align="right">37</td>
-    <td align="right">33</td>
-    <td align="right">4</td>
+    <td align="right">325</td>
+    <td align="right">318</td>
+    <td align="right">7</td>
     <td align="right">0</td>
   </tr>
   <tr valign="top">
@@ -55,60 +55,60 @@
     <th align="center">rows</th>
   </tr>
   <tr valign="top">
-    <td align="left">dim_cve (all versions)</td>
-    <td align="right">2884</td>
+    <td align="left">dim_kev_status</td>
+    <td align="right">56</td>
   </tr>
   <tr valign="top">
     <td align="left">dim_asset</td>
     <td align="right">141</td>
   </tr>
   <tr valign="top">
-    <td align="left">dim_product</td>
-    <td align="right">3718</td>
-  </tr>
-  <tr valign="top">
     <td align="left">dim_software</td>
     <td align="right">20</td>
   </tr>
   <tr valign="top">
-    <td align="left">dim_cvss</td>
-    <td align="right">564</td>
+    <td align="left">bridge_product_software_map</td>
+    <td align="right">16</td>
   </tr>
   <tr valign="top">
     <td align="left">dim_cwe</td>
-    <td align="right">289</td>
+    <td align="right">583</td>
   </tr>
   <tr valign="top">
-    <td align="left">dim_kev_status</td>
-    <td align="right">55</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">dim_date</td>
-    <td align="right">18626</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">bridge_cve_product</td>
-    <td align="right">16087</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">bridge_cve_cwe</td>
-    <td align="right">3389</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">bridge_product_software_map</td>
-    <td align="right">9</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">fact_vulnerability_intelligence_snapshot</td>
-    <td align="right">149</td>
+    <td align="left">dim_cvss</td>
+    <td align="right">2624</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_software_inventory_snapshot</td>
-    <td align="right">423</td>
+    <td align="right">5499</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">7590</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_product</td>
+    <td align="right">10379</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_date</td>
+    <td align="right">18627</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
-    <td align="right">854</td>
+    <td align="right">33791</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_cwe</td>
+    <td align="right">73893</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">dim_cve (all versions)</td>
+    <td align="right">72009</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">bridge_cve_product</td>
+    <td align="right">167303</td>
   </tr>
 </table>
 
@@ -126,17 +126,17 @@
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
     <td align="left">Rows pointing at the Unknown member (kev_date_added_key = -1)</td>
     <td align="right">0</td>
-    <td align="right">122</td>
+    <td align="right">4909</td>
     <td align="left">WARN</td>
-    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+    <td align="left">64.68% of 7590 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
     <td align="left">Rows pointing at the Unknown member (kev_due_date_key = -1)</td>
     <td align="right">0</td>
-    <td align="right">122</td>
+    <td align="right">4909</td>
     <td align="left">WARN</td>
-    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+    <td align="left">64.68% of 7590 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_cve_cwe</td>
@@ -144,7 +144,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">3389 rows checked</td>
+    <td align="left">73893 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_cve_cwe</td>
@@ -152,7 +152,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">3389 rows checked</td>
+    <td align="left">73893 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_cve_product</td>
@@ -160,7 +160,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">16087 rows checked</td>
+    <td align="left">167303 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_cve_product</td>
@@ -168,7 +168,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">16087 rows checked</td>
+    <td align="left">167303 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_product_software_map</td>
@@ -176,7 +176,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">9 rows checked</td>
+    <td align="left">16 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">bridge_product_software_map</td>
@@ -184,7 +184,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">9 rows checked</td>
+    <td align="left">16 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_software_inventory_snapshot</td>
@@ -192,7 +192,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">423 rows checked</td>
+    <td align="left">5499 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_software_inventory_snapshot</td>
@@ -200,7 +200,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">423 rows checked</td>
+    <td align="left">5499 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_software_inventory_snapshot</td>
@@ -208,7 +208,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">423 rows checked</td>
+    <td align="left">5499 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -216,7 +216,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -224,7 +224,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -232,7 +232,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -240,7 +240,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -248,7 +248,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -256,7 +256,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -264,7 +264,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -272,7 +272,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -280,7 +280,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_asset_vulnerability_exposure</td>
@@ -288,7 +288,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">854 rows checked</td>
+    <td align="left">33791 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -296,7 +296,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -304,7 +304,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -312,7 +312,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -320,7 +320,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -328,7 +328,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -336,7 +336,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -344,7 +344,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -352,7 +352,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
@@ -360,7 +360,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
 </table>
 
@@ -438,6 +438,1266 @@
   </tr>
   <tr valign="top">
     <td align="left">2026-10-10_045631</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">556.6</td>
+    <td align="right">556.6</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">17.690700</td>
+    <td align="right">17.690700</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">12</td>
+    <td align="right">12</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">566.4</td>
+    <td align="right">566.4</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">18.590200</td>
+    <td align="right">18.590200</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">13</td>
+    <td align="right">13</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">566.4</td>
+    <td align="right">566.4</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">18.590200</td>
+    <td align="right">18.590200</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">13</td>
+    <td align="right">13</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">764.3</td>
+    <td align="right">764.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">22.684450</td>
+    <td align="right">22.684450</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">24</td>
+    <td align="right">24</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">881.1</td>
+    <td align="right">881.1</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">27.243730</td>
+    <td align="right">27.243730</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">26</td>
+    <td align="right">26</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">889.9</td>
+    <td align="right">889.9</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">27.245310</td>
+    <td align="right">27.245310</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">27</td>
+    <td align="right">27</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">889.9</td>
+    <td align="right">889.9</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">27.269700</td>
+    <td align="right">27.269700</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">27</td>
+    <td align="right">27</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1005.1</td>
+    <td align="right">1005.1</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">34.066570</td>
+    <td align="right">34.066570</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">39</td>
+    <td align="right">39</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1041.9</td>
+    <td align="right">1041.9</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">34.055890</td>
+    <td align="right">34.055890</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">45</td>
+    <td align="right">45</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1118.0</td>
+    <td align="right">1118.0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">35.238490</td>
+    <td align="right">35.238490</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">52</td>
+    <td align="right">52</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1227.9</td>
+    <td align="right">1227.9</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">38.090250</td>
+    <td align="right">38.090250</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">61</td>
+    <td align="right">61</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1461.1</td>
+    <td align="right">1461.1</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">41.684950</td>
+    <td align="right">41.684950</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">71</td>
+    <td align="right">71</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1488.4</td>
+    <td align="right">1488.4</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">42.753840</td>
+    <td align="right">42.753840</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">74</td>
+    <td align="right">74</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1518.1</td>
+    <td align="right">1518.1</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">43.554890</td>
+    <td align="right">43.554890</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">78</td>
+    <td align="right">78</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1544.2</td>
+    <td align="right">1544.2</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">45.571470</td>
+    <td align="right">45.571470</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">81</td>
+    <td align="right">81</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1551.8</td>
+    <td align="right">1551.8</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">45.642780</td>
+    <td align="right">45.642780</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">82</td>
+    <td align="right">82</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1560.6</td>
+    <td align="right">1560.6</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">45.667700</td>
+    <td align="right">45.667700</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">82</td>
+    <td align="right">82</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1560.6</td>
+    <td align="right">1560.6</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">45.672140</td>
+    <td align="right">45.672140</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">82</td>
+    <td align="right">82</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1676.2</td>
+    <td align="right">1676.2</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">48.387070</td>
+    <td align="right">48.387070</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">82</td>
+    <td align="right">82</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1732.0</td>
+    <td align="right">1732.0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">49.746680</td>
+    <td align="right">49.746680</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">84</td>
+    <td align="right">84</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1753.8</td>
+    <td align="right">1753.8</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">51.283920</td>
+    <td align="right">51.283920</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">86</td>
+    <td align="right">86</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1776.3</td>
+    <td align="right">1776.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">52.376220</td>
+    <td align="right">52.376220</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">88</td>
+    <td align="right">88</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1788.2</td>
+    <td align="right">1788.2</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">52.444090</td>
+    <td align="right">52.444090</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">89</td>
+    <td align="right">89</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1792.5</td>
+    <td align="right">1792.5</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">52.907870</td>
+    <td align="right">52.907870</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">89</td>
+    <td align="right">89</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1792.5</td>
+    <td align="right">1792.5</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">52.920810</td>
+    <td align="right">52.920810</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">89</td>
+    <td align="right">89</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1839.8</td>
+    <td align="right">1839.8</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">53.902980</td>
+    <td align="right">53.902980</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">94</td>
+    <td align="right">94</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">1892.3</td>
+    <td align="right">1892.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">54.363300</td>
+    <td align="right">54.363300</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">101</td>
+    <td align="right">101</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2008.7</td>
+    <td align="right">2008.7</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.027750</td>
+    <td align="right">56.027750</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">103</td>
+    <td align="right">103</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2007.8</td>
+    <td align="right">2007.8</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.029920</td>
+    <td align="right">56.029920</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">103</td>
+    <td align="right">103</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2032.3</td>
+    <td align="right">2032.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.100630</td>
+    <td align="right">56.100630</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">105</td>
+    <td align="right">105</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2032.3</td>
+    <td align="right">2032.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.803410</td>
+    <td align="right">56.803410</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">105</td>
+    <td align="right">105</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2031.4</td>
+    <td align="right">2031.4</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.943760</td>
+    <td align="right">56.943760</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">105</td>
+    <td align="right">105</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2041.3</td>
+    <td align="right">2041.3</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">56.909730</td>
+    <td align="right">56.909730</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">106</td>
+    <td align="right">106</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2079.5</td>
+    <td align="right">2079.5</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">57.873020</td>
+    <td align="right">57.873020</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">110</td>
+    <td align="right">110</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2088.8</td>
+    <td align="right">2088.8</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">58.612160</td>
+    <td align="right">58.612160</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">111</td>
+    <td align="right">111</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Snapshot risk score matches the formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">CVSS reconciliation: SUM(latest CVSS) = SUM(snapshot cvss_base_score)</td>
+    <td align="right">2124.7</td>
+    <td align="right">2124.7</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">EPSS reconciliation: SUM(stg_epss) = SUM(snapshot epss_score)</td>
+    <td align="right">58.636090</td>
+    <td align="right">58.636090</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Exposure risk score matches the Phase 1 formula</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">KEV reconciliation: KEV CVEs known to NVD = KEV rows in snapshot</td>
+    <td align="right">115</td>
+    <td align="right">115</td>
+    <td align="left">PASS</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
     <td align="left">Snapshot risk score matches the formula</td>
     <td align="right">0</td>
     <td align="right">0</td>
@@ -657,6 +1917,2598 @@
     <td align="left">0.00% of 79 rows</td>
   </tr>
   <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">385386</td>
+    <td align="right">385386</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">29</td>
+    <td align="right">29</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">437</td>
+    <td align="right">437</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">438</td>
+    <td align="right">438</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 79 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-11_044402</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 79 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">385738</td>
+    <td align="right">385738</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">157</td>
+    <td align="right">157</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1018</td>
+    <td align="right">1018</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1019</td>
+    <td align="right">1019</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 80 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-12_045934</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 80 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">385987</td>
+    <td align="right">385987</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">894</td>
+    <td align="right">894</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1520</td>
+    <td align="right">1520</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1527</td>
+    <td align="right">1527</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 80 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-13_060009</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 80 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">388997</td>
+    <td align="right">388997</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">26595</td>
+    <td align="right">26595</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">5365</td>
+    <td align="right">5365</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">4</td>
+    <td align="right">4</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">5370</td>
+    <td align="right">5370</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 108 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-15_034533</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">2</td>
+    <td align="left">WARN</td>
+    <td align="left">1.85% of 108 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">389824</td>
+    <td align="right">389824</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">7503</td>
+    <td align="right">7503</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">3077</td>
+    <td align="right">3077</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1</td>
+    <td align="right">1</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">7499</td>
+    <td align="right">7499</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 125 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-16_034138</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 125 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">390400</td>
+    <td align="right">390400</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">13530</td>
+    <td align="right">13530</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">4313</td>
+    <td align="right">4313</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">8778</td>
+    <td align="right">8778</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 126 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-17_033114</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 126 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">390724</td>
+    <td align="right">390724</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">377</td>
+    <td align="right">377</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">215</td>
+    <td align="right">215</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">5143</td>
+    <td align="right">5143</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 126 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-18_033807</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 126 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">390807</td>
+    <td align="right">390807</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">12509</td>
+    <td align="right">12509</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">3443</td>
+    <td align="right">3443</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">3499</td>
+    <td align="right">3499</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 140 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-19_034817</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 140 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">391915</td>
+    <td align="right">391915</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">1555</td>
+    <td align="right">1555</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2543</td>
+    <td align="right">2543</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">6</td>
+    <td align="right">6</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2551</td>
+    <td align="right">2551</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 146 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-21_034900</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 146 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">394803</td>
+    <td align="right">394803</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">12548</td>
+    <td align="right">12548</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">4526</td>
+    <td align="right">4526</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">4531</td>
+    <td align="right">4531</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 156 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-24_034740</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 156 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">395249</td>
+    <td align="right">395249</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">5576</td>
+    <td align="right">5576</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">5399</td>
+    <td align="right">5399</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">5402</td>
+    <td align="right">5402</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 169 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-25_034634</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 169 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">395308</td>
+    <td align="right">395308</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">6113</td>
+    <td align="right">6113</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">4400</td>
+    <td align="right">4400</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">4400</td>
+    <td align="right">4400</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 200 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-26_035011</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 200 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">396257</td>
+    <td align="right">396257</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2942</td>
+    <td align="right">2942</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1845</td>
+    <td align="right">1845</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1933</td>
+    <td align="right">1933</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 203 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-28_044140</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 203 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">396966</td>
+    <td align="right">396966</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">6595</td>
+    <td align="right">6595</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2011</td>
+    <td align="right">2011</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2182</td>
+    <td align="right">2182</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 207 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-29_045417</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 207 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">397508</td>
+    <td align="right">397508</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">6007</td>
+    <td align="right">6007</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1896</td>
+    <td align="right">1896</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1904</td>
+    <td align="right">1904</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 210 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-30_045424</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 210 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">398142</td>
+    <td align="right">398142</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">5674</td>
+    <td align="right">5674</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">3005</td>
+    <td align="right">3005</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">3014</td>
+    <td align="right">3014</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 211 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-10-31_044005</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 211 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">398713</td>
+    <td align="right">398713</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">226</td>
+    <td align="right">226</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">205</td>
+    <td align="right">205</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">205</td>
+    <td align="right">205</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 212 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-01_045947</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 212 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">398784</td>
+    <td align="right">398784</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">69</td>
+    <td align="right">69</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">236</td>
+    <td align="right">236</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">236</td>
+    <td align="right">236</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 212 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-02_050003</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 212 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">398815</td>
+    <td align="right">398815</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">4408</td>
+    <td align="right">4408</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1673</td>
+    <td align="right">1673</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1676</td>
+    <td align="right">1676</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 227 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-03_054924</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 227 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">399388</td>
+    <td align="right">399388</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">3162</td>
+    <td align="right">3162</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2660</td>
+    <td align="right">2660</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1</td>
+    <td align="right">1</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2670</td>
+    <td align="right">2670</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 234 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-04_052427</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">1</td>
+    <td align="left">WARN</td>
+    <td align="left">0.43% of 234 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">400189</td>
+    <td align="right">400189</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">3454</td>
+    <td align="right">3454</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2166</td>
+    <td align="right">2166</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1</td>
+    <td align="right">1</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2173</td>
+    <td align="right">2173</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 237 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-05_054308</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 237 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">400564</td>
+    <td align="right">400564</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">12434</td>
+    <td align="right">12434</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">3704</td>
+    <td align="right">3704</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">3933</td>
+    <td align="right">3933</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 240 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-06_054038</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 240 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">400985</td>
+    <td align="right">400985</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">6172</td>
+    <td align="right">6172</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2619</td>
+    <td align="right">2619</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1</td>
+    <td align="right">1</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2640</td>
+    <td align="right">2640</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 242 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-07_051036</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">1</td>
+    <td align="left">WARN</td>
+    <td align="left">0.41% of 242 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">401675</td>
+    <td align="right">401675</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">1044</td>
+    <td align="right">1044</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">952</td>
+    <td align="right">952</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1156</td>
+    <td align="right">1156</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 243 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-08_050451</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 243 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">401956</td>
+    <td align="right">401956</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">270</td>
+    <td align="right">270</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">384</td>
+    <td align="right">384</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">385</td>
+    <td align="right">385</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 243 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-09_051633</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 243 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">402199</td>
+    <td align="right">402199</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">1700</td>
+    <td align="right">1700</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1727</td>
+    <td align="right">1727</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">4</td>
+    <td align="right">4</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1981</td>
+    <td align="right">1981</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 248 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-10_063025</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 248 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">402773</td>
+    <td align="right">402773</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">9972</td>
+    <td align="right">9972</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">4374</td>
+    <td align="right">4374</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">6</td>
+    <td align="right">6</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">4374</td>
+    <td align="right">4374</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 255 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-11_051618</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">2</td>
+    <td align="left">WARN</td>
+    <td align="left">0.78% of 255 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">404864</td>
+    <td align="right">404864</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">10383</td>
+    <td align="right">10383</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2758</td>
+    <td align="right">2758</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2761</td>
+    <td align="right">2761</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 271 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-12_062048</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 271 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">405484</td>
+    <td align="right">405484</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">1867</td>
+    <td align="right">1867</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2628</td>
+    <td align="right">2628</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2636</td>
+    <td align="right">2636</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 271 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-13_054128</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 271 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">406184</td>
+    <td align="right">406184</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">680</td>
+    <td align="right">680</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1617</td>
+    <td align="right">1617</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">2</td>
+    <td align="right">2</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1642</td>
+    <td align="right">1642</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-14_053048</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">406615</td>
+    <td align="right">406615</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">120</td>
+    <td align="right">120</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">120</td>
+    <td align="right">120</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-16_052756</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">406741</td>
+    <td align="right">406741</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2259</td>
+    <td align="right">2259</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1496</td>
+    <td align="right">1496</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1499</td>
+    <td align="right">1499</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-17_070528</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 274 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">407165</td>
+    <td align="right">407165</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2507</td>
+    <td align="right">2507</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2632</td>
+    <td align="right">2632</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">1</td>
+    <td align="right">1</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2634</td>
+    <td align="right">2634</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 275 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-18_062949</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 275 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">408395</td>
+    <td align="right">408395</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2683</td>
+    <td align="right">2683</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1653</td>
+    <td align="right">1653</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">4</td>
+    <td align="right">4</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1661</td>
+    <td align="right">1661</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 279 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-19_063203</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 279 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">409087</td>
+    <td align="right">409087</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2488</td>
+    <td align="right">2488</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">2343</td>
+    <td align="right">2343</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">2348</td>
+    <td align="right">2348</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 280 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-20_061928</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 280 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">EPSS rows = staged + rejected</td>
+    <td align="left">stg_epss</td>
+    <td align="right">410485</td>
+    <td align="right">410485</td>
+    <td align="left">PASS</td>
+    <td align="left">raw_epss vs stg_epss + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Every staged CPE match is in bridge_cve_product</td>
+    <td align="left">bridge_cve_product</td>
+    <td align="right">2174</td>
+    <td align="right">2174</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CPE rows vs bridge rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Every staged CVE has a current dim_cve row</td>
+    <td align="left">dim_cve</td>
+    <td align="right">1680</td>
+    <td align="right">1680</td>
+    <td align="left">PASS</td>
+    <td align="left">staged CVEs vs CVEs found in dim_cve</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Inventory snapshot covers every current asset</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="right">141</td>
+    <td align="right">141</td>
+    <td align="left">PASS</td>
+    <td align="left">current assets vs assets in today's inventory snapshot</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">KEV entries = staged + rejected</td>
+    <td align="left">stg_kev</td>
+    <td align="right">4</td>
+    <td align="right">4</td>
+    <td align="left">PASS</td>
+    <td align="left">raw entries vs stg_kev + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">NVD records = staged + rejected</td>
+    <td align="left">stg_cve</td>
+    <td align="right">1687</td>
+    <td align="right">1687</td>
+    <td align="left">PASS</td>
+    <td align="left">raw records vs stg_cve + stg_reject</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Snapshot rows without a CVSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 284 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">2026-11-21_060914</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">0.00% of 284 rows</td>
+  </tr>
+  <tr valign="top">
     <td align="left">full_load</td>
     <td align="left">Asset rows = staged + rejected</td>
     <td align="left">stg_asset</td>
@@ -751,9 +4603,9 @@
     <td align="left">Current CVEs without a CWE</td>
     <td align="left">dim_cve</td>
     <td align="right">0</td>
-    <td align="right">42</td>
+    <td align="right">3982</td>
     <td align="left">WARN</td>
-    <td align="left">2841 current CVEs; NVD has not assigned a weakness yet</td>
+    <td align="left">57470 current CVEs; NVD has not assigned a weakness yet</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
@@ -762,23 +4614,23 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">2841 current CVEs; missing descriptions were filled with a default text</td>
+    <td align="left">57470 current CVEs; missing descriptions were filled with a default text</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
     <td align="left">KEV CVEs not (yet) in the NVD feed</td>
     <td align="left">cur_kev_catalog</td>
     <td align="right">0</td>
-    <td align="right">1727</td>
+    <td align="right">1671</td>
     <td align="left">WARN</td>
-    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1739 KEV entries in total</td>
+    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1786 KEV entries in total</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
     <td align="left">Loaded batches with a vulnerability snapshot</td>
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
-    <td align="right">3</td>
-    <td align="right">3</td>
+    <td align="right">39</td>
+    <td align="right">39</td>
     <td align="left">PASS</td>
     <td align="left">one snapshot date per successfully loaded batch</td>
   </tr>
@@ -786,46 +4638,28 @@
     <td align="left">warehouse</td>
     <td align="left">Loaded batches with an inventory snapshot</td>
     <td align="left">fact_asset_software_inventory_snapshot</td>
-    <td align="right">3</td>
-    <td align="right">3</td>
+    <td align="right">39</td>
+    <td align="right">39</td>
     <td align="left">PASS</td>
     <td align="left">one snapshot date per successfully loaded batch</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
     <td align="left">Phase 2 target: at least 10,000 fact records</td>
-    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
     <td align="right">10000</td>
-    <td align="right">854</td>
+    <td align="right">7590</td>
     <td align="left">WARN</td>
-    <td align="left">854 rows from 3 loaded batches</td>
+    <td align="left">7590 rows from 39 loaded batches</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
     <td align="left">Phase 2 target: at least 10,000 fact records</td>
-    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
     <td align="right">10000</td>
-    <td align="right">149</td>
-    <td align="left">WARN</td>
-    <td align="left">149 rows from 3 loaded batches</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">warehouse</td>
-    <td align="left">Phase 2 target: at least 100 dimension records</td>
-    <td align="left">dim_product</td>
-    <td align="right">100</td>
-    <td align="right">100</td>
+    <td align="right">10000</td>
     <td align="left">PASS</td>
-    <td align="left">3718 rows</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">warehouse</td>
-    <td align="left">Phase 2 target: at least 100 dimension records</td>
-    <td align="left">dim_date</td>
-    <td align="right">100</td>
-    <td align="right">100</td>
-    <td align="left">PASS</td>
-    <td align="left">18626 rows</td>
+    <td align="left">33791 rows from 39 loaded batches</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
@@ -834,7 +4668,7 @@
     <td align="right">100</td>
     <td align="right">100</td>
     <td align="left">PASS</td>
-    <td align="left">2884 rows</td>
+    <td align="left">72009 rows</td>
   </tr>
   <tr valign="top">
     <td align="left">warehouse</td>
@@ -844,6 +4678,24 @@
     <td align="right">100</td>
     <td align="left">PASS</td>
     <td align="left">141 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_product</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">10379 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">warehouse</td>
+    <td align="left">Phase 2 target: at least 100 dimension records</td>
+    <td align="left">dim_date</td>
+    <td align="right">100</td>
+    <td align="right">100</td>
+    <td align="left">PASS</td>
+    <td align="left">18627 rows</td>
   </tr>
 </table>
 
@@ -888,11 +4740,11 @@
   <tr valign="top">
     <td align="left">Uniqueness</td>
     <td align="left">Duplicate natural keys</td>
-    <td align="left">dim_product</td>
+    <td align="left">dim_software</td>
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">vendor:product</td>
+    <td align="left">software name + version</td>
   </tr>
   <tr valign="top">
     <td align="left">Uniqueness</td>
@@ -906,6 +4758,15 @@
   <tr valign="top">
     <td align="left">Uniqueness</td>
     <td align="left">Duplicate natural keys</td>
+    <td align="left">dim_product</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">vendor:product</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Duplicate natural keys</td>
     <td align="left">dim_cwe</td>
     <td align="right">0</td>
     <td align="right">0</td>
@@ -914,21 +4775,12 @@
   </tr>
   <tr valign="top">
     <td align="left">Uniqueness</td>
-    <td align="left">Duplicate natural keys</td>
-    <td align="left">dim_software</td>
-    <td align="right">0</td>
-    <td align="right">0</td>
-    <td align="left">PASS</td>
-    <td align="left">software name + version</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">Uniqueness</td>
     <td align="left">Duplicate rows at the declared grain</td>
-    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">fact_asset_software_inventory_snapshot</td>
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">CVE x asset x software x assessment date</td>
+    <td align="left">asset x software x snapshot date</td>
   </tr>
   <tr valign="top">
     <td align="left">Uniqueness</td>
@@ -942,20 +4794,11 @@
   <tr valign="top">
     <td align="left">Uniqueness</td>
     <td align="left">Duplicate rows at the declared grain</td>
-    <td align="left">fact_asset_software_inventory_snapshot</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">asset x software x snapshot date</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">Uniqueness</td>
-    <td align="left">Overlapping SCD2 date ranges</td>
-    <td align="left">dim_asset</td>
-    <td align="right">0</td>
-    <td align="right">0</td>
-    <td align="left">PASS</td>
-    <td align="left">versions of the same asset whose effective ranges overlap</td>
+    <td align="left">CVE x asset x software x assessment date</td>
   </tr>
   <tr valign="top">
     <td align="left">Uniqueness</td>
@@ -965,6 +4808,15 @@
     <td align="right">0</td>
     <td align="left">PASS</td>
     <td align="left">versions of the same CVE whose effective ranges overlap</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">Uniqueness</td>
+    <td align="left">Overlapping SCD2 date ranges</td>
+    <td align="left">dim_asset</td>
+    <td align="right">0</td>
+    <td align="right">0</td>
+    <td align="left">PASS</td>
+    <td align="left">versions of the same asset whose effective ranges overlap</td>
   </tr>
   <tr valign="top">
     <td align="left">Validity</td>
@@ -982,7 +4834,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">565 rows checked</td>
+    <td align="left">2625 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">Validity</td>
@@ -991,7 +4843,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">27 KEV rows checked</td>
+    <td align="left">2681 KEV rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">Validity</td>
@@ -1000,7 +4852,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">149 rows checked</td>
+    <td align="left">7590 rows checked</td>
   </tr>
   <tr valign="top">
     <td align="left">Validity</td>
@@ -1009,7 +4861,7 @@
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
-    <td align="left">1739 KEV entries checked</td>
+    <td align="left">1786 KEV entries checked</td>
   </tr>
   <tr valign="top">
     <td align="left">Validity</td>
@@ -1032,7 +4884,7 @@
   <tr valign="top">
     <td align="left">Validity</td>
     <td align="left">Risk band does not match the risk score</td>
-    <td align="left">fact_asset_vulnerability_exposure</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
@@ -1041,7 +4893,7 @@
   <tr valign="top">
     <td align="left">Validity</td>
     <td align="left">Risk band does not match the risk score</td>
-    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="left">fact_asset_vulnerability_exposure</td>
     <td align="right">0</td>
     <td align="right">0</td>
     <td align="left">PASS</td>
@@ -1062,43 +4914,64 @@
     <td align="left">WARN</td>
     <td align="left">Current CVEs without a CWE</td>
     <td align="left">dim_cve</td>
-    <td align="right">42</td>
-    <td align="left">2841 current CVEs; NVD has not assigned a weakness yet</td>
+    <td align="right">3982</td>
+    <td align="left">57470 current CVEs; NVD has not assigned a weakness yet</td>
   </tr>
   <tr valign="top">
     <td align="left">WARN</td>
     <td align="left">KEV CVEs not (yet) in the NVD feed</td>
     <td align="left">cur_kev_catalog</td>
-    <td align="right">1727</td>
-    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1739 KEV entries in total</td>
+    <td align="right">1671</td>
+    <td align="left">KEV entries whose CVE has no NVD record loaded - they cannot be snapshotted; 1786 KEV entries in total</td>
   </tr>
   <tr valign="top">
     <td align="left">WARN</td>
     <td align="left">Phase 2 target: at least 10,000 fact records</td>
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
-    <td align="right">149</td>
-    <td align="left">149 rows from 3 loaded batches</td>
-  </tr>
-  <tr valign="top">
-    <td align="left">WARN</td>
-    <td align="left">Phase 2 target: at least 10,000 fact records</td>
-    <td align="left">fact_asset_vulnerability_exposure</td>
-    <td align="right">854</td>
-    <td align="left">854 rows from 3 loaded batches</td>
+    <td align="right">7590</td>
+    <td align="left">7590 rows from 39 loaded batches</td>
   </tr>
   <tr valign="top">
     <td align="left">WARN</td>
     <td align="left">Rows pointing at the Unknown member (kev_date_added_key = -1)</td>
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
-    <td align="right">122</td>
-    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+    <td align="right">4909</td>
+    <td align="left">64.68% of 7590 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
   </tr>
   <tr valign="top">
     <td align="left">WARN</td>
     <td align="left">Rows pointing at the Unknown member (kev_due_date_key = -1)</td>
     <td align="left">fact_vulnerability_intelligence_snapshot</td>
-    <td align="right">122</td>
-    <td align="left">81.88% of 149 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+    <td align="right">4909</td>
+    <td align="left">64.68% of 7590 rows - value missing in the source or not applicable (e.g. KEV dates of a CVE that is not in KEV)</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">2</td>
+    <td align="left">1.85% of 108 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">2</td>
+    <td align="left">0.78% of 255 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">1</td>
+    <td align="left">0.41% of 242 rows</td>
+  </tr>
+  <tr valign="top">
+    <td align="left">WARN</td>
+    <td align="left">Snapshot rows without an EPSS score</td>
+    <td align="left">fact_vulnerability_intelligence_snapshot</td>
+    <td align="right">1</td>
+    <td align="left">0.43% of 234 rows</td>
   </tr>
 </table>
 
