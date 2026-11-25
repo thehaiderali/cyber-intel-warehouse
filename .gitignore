@@ -1,0 +1,23 @@
+# Environment and secrets
+.env
+*.env
+
+# Raw / large data files (loaded from outside the repo via -v data_dir=...)
+data/
+*.csv
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Editor / OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
